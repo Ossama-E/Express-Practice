@@ -9,7 +9,9 @@
   <body>
     <h1>Today's random number is <%=randomNum%></h1>
     <% if (randomNum % 2 == 0) { %>
-    <h2>Even</h2>
+    <h2>if statement's even</h2>
     <% } %>
+
+    <h2><%= randomNum % 2 == 0 ? 'EVEN' : 'ODD' %></h2>
   </body>
 </html>
