@@ -4,9 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>r/<%=subreddit%></title>
+    <title>r/<%=name%> sub</title>
   </head>
   <body>
-    <h1>viewing the <%=subreddit%> sub page</h1>
+    <h1>viewing the <%=name%> sub page</h1>
+    <h3><%= description %></h3>
+    <p><%= subscribers %> total subs</p>
+
+    <% for (let post of posts) { %>
+    <article>
+      <h3><%=post.title%></h3>
+      <% if (post.img) { %>
+      <img src="<%=post.img%>" />
+      <%}%>
+    </article>
+    <% } %>
   </body>
 </html>
