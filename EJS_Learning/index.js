@@ -5,6 +5,7 @@ const data = require("./data.json");
 console.log(data);
 
 app.set("view engine", "ejs");
+app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "/views"));
 
 app.listen(3000, () => {
@@ -23,8 +24,16 @@ app.get("/r/:subreddit", (req, res) => {
   const { subreddit } = req.params;
   console.log(subreddit);
   const subInfo = data[subreddit];
+  let error = false;
+  if (!data[subreddit]) {
+    console.log("error found");
+    res.render("errorpage", { subreddit });
+    error = true;
+  }
 
-  res.render("subreddit", { ...subInfo });
+  if (!error) {
+    res.render("subreddit", { ...subInfo });
+  }
 });
 
 app.get("/colours", (req, res) => {
